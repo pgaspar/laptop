@@ -8,9 +8,22 @@ fancy_echo() {
   printf "\n%b\n" "$1"
 }
 
+append_to_dotfile() {
+  local dotfile="$1"
+  local text="$2"
+  local skip_new_line="$3"
+
+  if ! grep -Fqs "$text" "$dotfile"; then
+    if (( skip_new_line )); then
+      printf "%s\n" "$text" >> "$dotfile"
+    else
+      printf "\n%s\n" "$text" >> "$dotfile"
+    fi
+  fi
+}
+
 append_to_zshrc() {
-  local text="$1" zshrc
-  local skip_new_line="$2"
+  local zshrc
 
   if [[ -w "$HOME/.zshrc.local" ]]; then
     zshrc="$HOME/.zshrc.local"
@@ -18,13 +31,7 @@ append_to_zshrc() {
     zshrc="$HOME/.zshrc"
   fi
 
-  if ! grep -Fqs "$text" "$zshrc"; then
-    if (( skip_new_line )); then
-      printf "%s\n" "$text" >> "$zshrc"
-    else
-      printf "\n%s\n" "$text" >> "$zshrc"
-    fi
-  fi
+  append_to_dotfile zshrc "$2" "$3"
 }
 
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
@@ -162,7 +169,10 @@ fancy_echo "Setting $ruby_version as global default Ruby ..."
   rbenv rehash
 
 fancy_echo "Updating to latest Rubygems version ..."
-  gem update --system
+  gem update --system --no-document
+
+fancy_echo "Stop fetching documentation when installing gems ..."
+  append_to_dotfile ".gemrc" "gem: --no-document"
 
 fancy_echo "Installing Bundler to install project-specific Ruby gems ..."
   gem install bundler --no-document
