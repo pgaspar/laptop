@@ -65,6 +65,8 @@ What it sets up
 [Sublime Text 3]: http://www.sublimetext.com/3
 [Zsh]: http://www.zsh.org/
 
+Finally, Laptop will configure your default SSH key, if it is not setup.
+
 It should take less than 15 minutes to install (depends on your machine).
 
 Laptop can be run multiple times on the same machine safely. It will upgrade

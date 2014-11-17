@@ -201,6 +201,14 @@ fancy_echo "Installing Sublime Text 3 ..."
 fancy_echo "Installing iTerm 2 ..."
   cask_install_or_upgrade 'iterm2'
 
+fancy_echo "Setting up SSH keys ..."
+  if ! [ -e "$HOME/.ssh/id_rsa.pub" ]; then
+    echo "Generating ssh key..."
+    echo "Please enter the email you want to associate with your ssh key: \c"
+    read email
+    ssh-keygen -t rsa -C "$email"
+  fi
+
 fancy_echo "Installing your personal additions from ~/.laptop.local ..."
   if [[ -f ~/.laptop.local ]]; then
     source ~/.laptop.local
