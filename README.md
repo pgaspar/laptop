@@ -37,6 +37,7 @@ What it sets up
 * [Heroku Config] for local `ENV` variables
 * [Heroku Toolbelt] for interacting with the Heroku API
 * [Homebrew] for managing operating system libraries
+* [Homebrew Cask] for managing OS X apps
 * [MongoDB] for storing document-based data
 * [MySQL] for storing relational data
 * [Rails] gem for writing web applications
@@ -45,11 +46,15 @@ What it sets up
 * [Ruby Build] for installing Rubies
 * [Ruby] stable for writing general-purpose code
 * [Zsh] as your shell
+* [Sublime Text 3] as a decent code editor
+* [iTerm 2] as a Terminal.app replacement
 
 [Bundler]: http://bundler.io/
 [Heroku Config]: https://github.com/ddollar/heroku-config
 [Heroku Toolbelt]: https://toolbelt.heroku.com/
 [Homebrew]: http://brew.sh/
+[Homebrew Cask]: http://caskroom.io/
+[iTerm 2]: http://iterm2.com/
 [MongoDB]: http://mongodb.org/
 [MySQL]: http://www.mysql.com/
 [Rails]: http://rubyonrails.org/
@@ -57,6 +62,7 @@ What it sets up
 [Redis]: http://redis.io/
 [Ruby Build]: https://github.com/sstephenson/ruby-build
 [Ruby]: https://www.ruby-lang.org/en/
+[Sublime Text 3]: http://www.sublimetext.com/3
 [Zsh]: http://www.zsh.org/
 
 It should take less than 15 minutes to install (depends on your machine).

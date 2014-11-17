@@ -87,6 +87,14 @@ brew_launchctl_restart() {
   launchctl load "$HOME/Library/LaunchAgents/$plist" >/dev/null
 }
 
+cask_install_or_upgrade() {
+  brew cask install "$1"
+}
+
+reload_zshrc() {
+  source ~/.zshrc
+}
+
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew, a good OS X package manager ..."
     ruby <(curl -fsS https://raw.githubusercontent.com/Homebrew/install/master/install)
@@ -176,6 +184,22 @@ fancy_echo "Installing Heroku CLI client ..."
 
 fancy_echo "Installing the heroku-config plugin to pull config variables locally to be used as ENV variables ..."
   heroku plugins:install https://github.com/ddollar/heroku-config.git
+
+fancy_echo "Installing Homebrew Cask for apt-get like app installing ..."
+  brew tap caskroom/cask
+  brew tap caskroom/versions
+  brew_install_or_upgrade 'brew-cask'
+
+fancy_echo "Setting up Cask to symlink to /Applications instead of ~/Applications ..."
+  append_to_zshrc '# Setup Homebrew Cask to symlink to /Applications'
+  append_to_zshrc 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' 1
+  reload_zshrc
+
+fancy_echo "Installing Sublime Text 3 ..."
+  cask_install_or_upgrade 'sublime-text3'
+
+fancy_echo "Installing iTerm 2 ..."
+  cask_install_or_upgrade 'iterm2'
 
 fancy_echo "Installing your personal additions from ~/.laptop.local ..."
   if [[ -f ~/.laptop.local ]]; then
