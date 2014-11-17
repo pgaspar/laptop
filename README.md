@@ -59,6 +59,8 @@ What it sets up
 [Ruby]: https://www.ruby-lang.org/en/
 [Zsh]: http://www.zsh.org/
 
+Finally, Laptop will configure your default SSH key, if it is not setup.
+
 It should take less than 15 minutes to install (depends on your machine).
 
 Laptop can be run multiple times on the same machine safely. It will upgrade
